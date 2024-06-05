@@ -11,7 +11,8 @@ import cors from 'cors';
 import { corsOptions } from "./config/corsOptions.js";
 // Router Imports
 import { router as rootRouter } from './routes/root.js';
-import userRoutes from './routes/userRoutes.js';
+import { router as userRoutes } from './routes/userRoutes.js';
+import { router as noteRoutes } from './routes/noteRoutes.js';
 
 import { connectDB } from './config/dbConn.js';
 import mongoose from 'mongoose';
@@ -41,6 +42,7 @@ app.use('/', express.static(`${__dirname}/public`)); // Any request to the root 
 // Route Handling
 app.use('/', rootRouter);
 app.use('/users', userRoutes);
+app.use('/notes', noteRoutes);
 
 // Catch-all route to give a 404 error if there is no other route
 app.all('*', (req, res) => {

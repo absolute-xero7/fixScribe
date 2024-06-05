@@ -5,7 +5,7 @@ import * as usersController from '../controllers/usersController.js';
 // Create an instance of Express Router
 const router = express.Router();
 
-router.route('/')
+router.route('/') // we are at /users
     .get(usersController.getAllUsers) // READ
     .post(usersController.createNewUser) // CREATE
     .patch(usersController.updateUser) // UPDATE
