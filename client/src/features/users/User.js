@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'; // Import the useSelector hook from react-redux
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook from react-router-dom
-import { selectUserById } from './usersSlice'; // Import the selector function to get a user by ID
+import { selectUserById } from './usersApiSlice'; // Import the selector function to get a user by ID
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon for icons
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon
 

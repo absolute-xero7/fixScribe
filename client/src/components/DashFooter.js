@@ -24,12 +24,12 @@ const DashFooter = () => {
 
     const content = (
         <footer className='dash-footer'>
-            {goHomeButton}
+            {/* {goHomeButton} */}
             <p>Current User:</p>
             <p>Status:</p>
         </footer>
     )
-  return content
+    return content
 
 }
 
