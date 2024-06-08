@@ -9,7 +9,11 @@ const NotesList = () => {
     isSuccess, // Success state
     isError, // Error state
     error // Error object
-  } = useGetNotesQuery()
+  } = useGetNotesQuery(undefined, {
+    pollingInterval: 15000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true
+  });
 
   let content // Variable to store the content to be rendered
 
