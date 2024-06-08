@@ -15,10 +15,10 @@
   --SECONDARY-COLOR: #424A54; /* Darker shade of background */
   --ACCENT-COLOR: #FFF;     /* White for text */
   --TEXT-COLOR: #FFF;
-  --ERROR: #d9534f;
+  --ERROR: #CF6679;
   --INACTIVE: #808080;
   --NOTE-BGCOLOR: #30363B;  /* Slightly lighter for notes */
-  --STATUS-COMPLETE: #5cb85c;
+  --STATUS-COMPLETE: #03DAC6;
   --STATUS-OPEN: #CF6679;
   --TABLE-BGCOLOR: #30363B;
   --TABLE-COLOR: #FFF;
@@ -336,21 +336,12 @@ tr {
   display: contents;
 } */
 
-.table-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 0 35px;
-}
-
 .table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
-  /* text-align: left; */
+  text-align: left;
 }
-
-
 
 .table__row {
   border-bottom: 1px solid #000;
@@ -358,7 +349,7 @@ tr {
 
 .table__cell {
   padding: 10px;
-  /* text-align: left; */
+  text-align: left;
 }
 
 .table__cell--header {
@@ -406,11 +397,11 @@ tr {
 
 /* || NOTE */
 
-.note__created, .note__updated, .note__title, .note__username {
-  text-align: left;
+.note__created,
+.note__updated,
+.note__username {
+  display: none;
 }
-
-
 
 .note__status {
   font-weight: bold;
@@ -423,7 +414,6 @@ tr {
 .note__status--completed {
   color: var(--STATUS-COMPLETE);
 }
-
 
 /* || FORM - GENERAL */
 
@@ -514,18 +504,6 @@ tr {
   .form {
     padding: 0.5em;
   }
-
-
-  
-}
-
-@media screen and (max-width: 1000px) {
-  .table-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 0;
-  }
 }
 
 @media screen and (min-width: 768px) {
@@ -541,11 +519,11 @@ tr {
     grid-template-columns: repeat(3, 1fr) 2fr repeat(2, 1fr);
   }
 
-  /* .note__created,
+  .note__created,
   .note__updated,
   .note__username {
     display: block;
-  } */
+  }
 
   .form__action-buttons {
     position: static;
