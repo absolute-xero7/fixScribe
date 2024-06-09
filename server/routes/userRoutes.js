@@ -1,9 +1,12 @@
 // Import necessary modules
 import express from "express";
 import * as usersController from '../controllers/usersController.js';
+import verifyJWT from "../middleware/verifyJWT.js";
 
 // Create an instance of Express Router
 const router = express.Router();
+
+router.use(verifyJWT);
 
 router.route('/') // we are at /users
     .get(usersController.getAllUsers) // READ

@@ -11,13 +11,14 @@ import cors from 'cors';
 import { corsOptions } from "./config/corsOptions.js";
 // Router Imports
 import { router as rootRouter } from './routes/root.js';
+import { router as authRoutes } from './routes/authRoutes.js';
 import { router as userRoutes } from './routes/userRoutes.js';
 import { router as noteRoutes } from './routes/noteRoutes.js';
 
 import { connectDB } from './config/dbConn.js';
 import mongoose from 'mongoose';
 
-const __filename = fileURLToPath(import.meta.url); 
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename); // Workaround to get the __dirname in ES modules
 
 // Create an express app
@@ -41,6 +42,7 @@ app.use('/', express.static(`${__dirname}/public`)); // Any request to the root 
 
 // Route Handling
 app.use('/', rootRouter);
+app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/notes', noteRoutes);
 
@@ -50,7 +52,7 @@ app.all('*', (req, res) => {
     if (req.accepts('html')) {
         res.sendFile(`${__dirname}/views/404.html`);
     } else if (req.accepts('json')) {
-        res.json({message: '404 Not Found'});
+        res.json({ message: '404 Not Found' });
     } else {
         res.type('txt').send('404 Not Found');
     }
@@ -61,7 +63,7 @@ app.use(errorHandler); // Placed at the end to catch any errors that occur in th
 
 mongoose.connection.once('open', () => {
     // Starts server and listens on the specified port
-    app.listen(PORT, () => { 
+    app.listen(PORT, () => {
         console.log('Connected to MongoDB');
         console.log(`Server running on port ${PORT}`);
     });

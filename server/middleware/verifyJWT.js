@@ -31,4 +31,4 @@ const verifyJWT = (req, res, next) => {
 };
 
 // Export the middleware function
-export { verifyJWT };
+export default verifyJWT;
