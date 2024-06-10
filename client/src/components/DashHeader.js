@@ -31,7 +31,7 @@ const DashHeader = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            navigate('/public')
+            navigate('/login')
         }
     }, [isSuccess, navigate])
 
