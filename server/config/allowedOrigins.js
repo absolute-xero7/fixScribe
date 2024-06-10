@@ -1,7 +1,5 @@
 const allowedOrigins = [
-    'http://localhost:3000',
-    'https://www.repairtracker.com',
-    'https://repairtracker.com'
+    'https://www.fixScribe.onrender.com'
 ];
 
 export { allowedOrigins }
