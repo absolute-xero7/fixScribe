@@ -13,7 +13,7 @@ const Public = () => {
             <main className="public__main">
                 <p className="main__text">For all your repair store logistics.</p>
                 <address className="public__addr">
-                    Circuit Reanimation<br />
+                    fixScribe<br />
                     42 Andromeda Way<br />
                     Cloud City, CA 12345<br />
                     <a href="tel:+17777777777" className="contact__link">(777) 777-7777</a>
