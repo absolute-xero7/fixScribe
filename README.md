@@ -1,5 +1,5 @@
-# RepairTracker
-This is a full-stack web application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The app is designed to replace the current sticky note system used by a tech repair shop. It allows employees, managers, and admins to manage tech repair notes efficiently.
+# fixScribe
+This full-stack web application is built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The app is designed to replace the current sticky note system used by a tech repair shop. It allows employees, managers, and admins to manage tech repair notes efficiently.
 
 ## Tech Stack
 
