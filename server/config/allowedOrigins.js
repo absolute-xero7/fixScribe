@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'https://www.fixScribe.onrender.com'
+    'https://fixscribe.onrender.com'
 ];
 
 export { allowedOrigins }
