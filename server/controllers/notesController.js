@@ -107,16 +107,16 @@ const deleteNote = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'Note not found' });
     };
 
-    const deletedNote = await note.findByIdAndDelete(id).exec();
+    const deletedNote = await Note.findByIdAndDelete(id).exec();
 
     const reply = `Note '${deletedNote.title}' with ID ${deletedNote._id} deleted`;
 
     res.json(reply);
 });
 
-export { 
+export {
     getAllNotes,
     createNewNote,
     updateNote,
     deleteNote
- };
+};

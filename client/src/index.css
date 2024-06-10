@@ -37,6 +37,11 @@
   border-radius: 5px;
 }
 
+.errmsg a:any-link {
+  color: var(--ERROR);
+  text-decoration: underline;
+}
+
 .nowrap {
   white-space: nowrap;
 }
@@ -187,6 +192,7 @@ a:focus-visible {
   border-top: 1.5px solid #000;
   padding-top: 40px;
   text-align: left; /* Left-align text */
+  margin-top: auto;
 }
 
 .login_button {
@@ -219,8 +225,8 @@ a:focus-visible {
   padding: 20px;
   background-color: #fff;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: start;
+  justify-content: left;
   box-sizing: border-box;
 }
 

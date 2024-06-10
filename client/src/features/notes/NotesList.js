@@ -2,6 +2,9 @@ import { useGetNotesQuery } from "./notesApiSlice"
 import Note from "./Note"
 
 const NotesList = () => {
+
+  const { username, isManager, isAdmin } = useAuth()
+
   // Fetch notes data using the custom hook
   const {
     data: notes, // Destructure notes data
@@ -9,7 +12,7 @@ const NotesList = () => {
     isSuccess, // Success state
     isError, // Error state
     error // Error object
-  } = useGetNotesQuery(undefined, {
+  } = useGetNotesQuery('notesList', {
     pollingInterval: 15000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true
@@ -27,12 +30,17 @@ const NotesList = () => {
 
   // If data fetching is successful, render the table
   if (isSuccess) {
-    const { ids } = notes // Destructure ids from notes data
+    const { ids, entities } = notes // Destructure ids from notes data
+
+    let filteredIds
+    if (isManager || isAdmin) {
+      filteredIds = [...ids]
+    } else {
+      filteredIds = ids.filter(noteId => entities[noteId].username === username)
+    }
 
     // Map note IDs to Note components
-    const tableContent = ids?.length
-      ? ids.map(noteId => <Note key={noteId} noteId={noteId} />)
-      : null
+    const tableContent = ids?.length && filteredIds.map(noteId => <Note key={noteId} noteId={noteId} />);
 
     // Render the table with note data
     content = (

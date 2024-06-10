@@ -15,6 +15,7 @@ const NewNoteForm = ({ users }) => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [userId, setUserId] = useState(users[0].id); // Defaulting to the first user's ID
+    const [errMsg, setErrMsg] = useState(''); // State for error messages
 
     // Effect hook to reset form and navigate when note is successfully added
     useEffect(() => {
@@ -26,10 +27,15 @@ const NewNoteForm = ({ users }) => {
         }
     }, [isSuccess, navigate]);
 
+    // Effect hook to clear error message when inputs change
+    useEffect(() => {
+        setErrMsg('');
+    }, [title, text, userId]);
+
     // Handlers for input changes
-    const onTitleChanged = e => setTitle(e.target.value);
-    const onTextChanged = e => setText(e.target.value);
-    const onUserIdChanged = e => setUserId(e.target.value);
+    const onTitleChanged = (e) => setTitle(e.target.value);
+    const onTextChanged = (e) => setText(e.target.value);
+    const onUserIdChanged = (e) => setUserId(e.target.value);
 
     // Checking if all fields are filled and no loading is in progress
     const canSave = [title, text, userId].every(Boolean) && !isLoading;
@@ -37,27 +43,39 @@ const NewNoteForm = ({ users }) => {
     // Handler for form submission
     const onSaveNoteClicked = async (e) => {
         e.preventDefault();
-        if (canSave) {
-            await addNewNote({ user: userId, title, text });
+        try {
+            if (canSave) {
+                await addNewNote({ user: userId, title, text }).unwrap();
+            }
+        } catch (err) {
+            if (!err.status) {
+                setErrMsg('No Server Response');
+            } else if (err.status === 400) {
+                setErrMsg('Missing Title or Text');
+            } else if (err.status === 401) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg(err.data?.message || 'Failed to save the note');
+            }
         }
     };
 
     // Creating options for the user select dropdown
-    const options = users.map(user => (
+    const options = users.map((user) => (
         <option key={user.id} value={user.id}>
             {user.username}
         </option>
     ));
 
     // Classes for error message and incomplete input validation
-    const errClass = isError ? "errmsg" : "offscreen";
+    const errClass = errMsg ? "errmsg" : "offscreen";
     const validTitleClass = !title ? "form__input--incomplete" : '';
     const validTextClass = !text ? "form__input--incomplete" : '';
 
     // JSX content for the form
     const content = (
         <>
-            <p className={errClass}>{error?.data?.message}</p>
+            <p className={errClass} aria-live="assertive">{errMsg}</p>
             <form className="form" onSubmit={onSaveNoteClicked}>
                 <div className="form__title-row">
                     <h2>New Note</h2>
@@ -93,7 +111,7 @@ const NewNoteForm = ({ users }) => {
                     value={text}
                     onChange={onTextChanged}
                 />
-                <label className="form__label form__checkbox-container" htmlFor="username">
+                <label className="form__label" htmlFor="username">
                     ASSIGNED TO:
                 </label>
                 <select

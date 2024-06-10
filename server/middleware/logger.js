@@ -2,7 +2,7 @@
 import { format } from 'date-fns'; // Date formatting library
 import { v4 as uuid } from 'uuid'; // UUID generation library
 import fs from 'fs'; // File system module for synchronous operations
-import fsPromises from 'fs/promises'; // File system module for asynchronous operations
+import { promises as fsPromises } from 'fs'; // File system module for asynchronous operations
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
@@ -18,14 +18,14 @@ const logEvents = async (message, logFileName) => {
     try {
         // Check if logs directory exists, create if it doesn't
         if (!fs.existsSync(`${__dirname}/../logs`)) {
-            await fssPromises.mkdir(`${__dirname}/../logs`);
+            await fsPromises.mkdir(`${__dirname}/../logs`);
         }
         // Append log entry to specified log file
         await fsPromises.appendFile(`${__dirname}/../logs/${logFileName}`, logItem);
     } catch (err) {
         console.log(err); // Log any errors that occur during logging
     }
-    
+
 };
 
 // Middleware function to log requests
