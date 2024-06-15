@@ -4,7 +4,7 @@ fixScribe is a full-stack web application built using the MERN (MongoDB, Express
 
 ![Dashboard of the app](fixScribe.jpg)
 
-[Demo]([https://fixscribe.onrender.com](https://www.youtube.com/watch?v=O7kBCXW_DrY))
+[Demo](https://www.youtube.com/watch?v=O7kBCXW_DrY)
 
 ## Tech Stack
 
